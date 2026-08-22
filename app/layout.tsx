@@ -20,6 +20,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "MERLINN",
   description: "merlinnmusic",
+  icons: {
+    icon: [
+      {
+        url: "/favicon/favicon-96x96.png",
+        type: "image/png",
+        sizes: "96x96",
+      },
+      { url: "/favicon/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon/favicon.ico",
+    apple: {
+      url: "/favicon/apple-touch-icon.png",
+      sizes: "180x180",
+    },
+  },
+  manifest: "/favicon/site.webmanifest",
+  appleWebApp: {
+    title: "MERLINN",
+  },
 };
 
 export default function RootLayout({

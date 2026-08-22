@@ -35,7 +35,7 @@ export default function LetsJamPage() {
     <main className="min-h-[70vh] bg-[var(--background)] pb-10">
       <div className="mx-auto w-full max-w-3xl px-4 pt-5 pb-6 sm:px-6 sm:pt-6 sm:pb-10">
         <h1 className={`${cinzel.className} mt-3 text-3xl font-medium tracking-[0.16em] text-white uppercase sm:text-4xl`}>
-          Let's Jam
+          Let&apos;s Jam
         </h1>
         {/* <section className="rounded-md bg-[#3a3a3a] px-5 py-4 shadow-[0_8px_30px_rgba(0,0,0,0.25)] sm:px-8 sm:py-6">
           <div className="mt-0 space-y-4 text-sm leading-relaxed text-[#b0b0b0] sm:text-[0.95rem]">
