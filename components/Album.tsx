@@ -191,11 +191,13 @@ export default function Album({ album, ownsAlbum = false }: AlbumProps) {
               let trackNumber = 0;
               return album.sections.map((section) => (
                 <section key={section.id} className="mt-6 first:mt-3">
-                  <h2
-                    className={`${cinzel.className} px-1 pb-2 text-xs tracking-[0.14em] text-[#a8a8a8] uppercase sm:text-sm`}
-                  >
-                    {section.title}
-                  </h2>
+                  {section.title ? (
+                    <h2
+                      className={`${cinzel.className} px-1 pb-2 text-xs tracking-[0.14em] text-[#a8a8a8] uppercase sm:text-sm`}
+                    >
+                      {section.title}
+                    </h2>
+                  ) : null}
 
                   <ul>
                     {section.tracks.map((track) => {

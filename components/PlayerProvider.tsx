@@ -10,8 +10,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { tracklist, type Track } from "@/data/tracklist";
-import { weightOfThings } from "@/data/album";
+import { beardMakethTheMan, weightOfThings } from "@/data/album";
+import type { Track } from "@/data/tracklist";
 
 export type PlayerTrack = Track & {
   audioSrc: string;
@@ -38,16 +38,18 @@ type PlayerContextValue = {
 const PlayerContext = createContext<PlayerContextValue | null>(null);
 
 function getPlayableTracks(): PlayerTrack[] {
-  return tracklist.flatMap((section) =>
-    section.tracks
-      .filter((track): track is Track & { audioSrc: string } =>
-        Boolean(track.audioSrc),
-      )
-      .map((track) => ({
-        ...track,
-        coverSrc: weightOfThings.coverSrc,
-        artist: "Merlinn",
-      })),
+  return [weightOfThings, beardMakethTheMan].flatMap((album) =>
+    album.sections.flatMap((section) =>
+      section.tracks
+        .filter((track): track is Track & { audioSrc: string } =>
+          Boolean(track.audioSrc),
+        )
+        .map((track) => ({
+          ...track,
+          coverSrc: album.coverSrc,
+          artist: "Merlinn",
+        })),
+    ),
   );
 }
 

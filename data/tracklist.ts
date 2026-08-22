@@ -242,3 +242,93 @@ export const tracklist: TrackSection[] = [
     ],
   },
 ];
+
+export const beardMakethTheManTracklist: TrackSection[] = [
+  {
+    id: "beard-tracks",
+    title: "",
+    tracks: [
+      {
+        id: "beard-1",
+        title: "The Storm",
+        length: "3:29",
+        visible: true,
+        audioSrc: "/audio/The Storm.mp3",
+      },
+      {
+        id: "beard-2",
+        title: "Monster In The Woods",
+        length: "3:47",
+        visible: true,
+        audioSrc: "/audio/Monster In The Woods.mp3",
+      },
+      {
+        id: "beard-3",
+        title: "There's No Dragons Here",
+        length: "3:01",
+        visible: true,
+        audioSrc: "/audio/There's No Dragons Here.mp3",
+      },
+      {
+        id: "beard-4",
+        title: "The Inn at World's End",
+        length: "3:33",
+        visible: false,
+      },
+      {
+        id: "beard-5",
+        title: "Tankard and Steel",
+        length: "4:05",
+        visible: false,
+      },
+      {
+        id: "beard-6",
+        title: "A Fool's Errand",
+        length: "3:19",
+        visible: false,
+      },
+      {
+        id: "beard-7",
+        title: "Whispers in the Mead",
+        length: "5:02",
+        visible: false,
+      },
+      {
+        id: "beard-8",
+        title: "Boots of the Wanderer",
+        length: "4:37",
+        visible: false,
+      },
+      {
+        id: "beard-9",
+        title: "Firelight Bargain",
+        length: "3:54",
+        visible: false,
+      },
+      {
+        id: "beard-10",
+        title: "Crooked Crown",
+        length: "4:16",
+        visible: false,
+      },
+      {
+        id: "beard-11",
+        title: "No Saint Among Us",
+        length: "3:41",
+        visible: false,
+      },
+      {
+        id: "beard-12",
+        title: "Raise the Banner",
+        length: "5:08",
+        visible: false,
+      },
+      {
+        id: "beard-13",
+        title: "When the Mead Runs Dry",
+        length: "4:29",
+        visible: false,
+      },
+    ],
+  },
+];
