@@ -28,7 +28,7 @@ export default async function Home() {
           href="/lets-jam"
           className={`${cinzel.className} block w-full rounded-md bg-[#121212] py-5 text-center text-xl font-medium tracking-[0.16em] text-white uppercase transition-opacity hover:opacity-80 sm:py-6 sm:text-2xl`}
         >
-          Let&apos;s Jam
+          Let's Jam
         </Link>
       </div>
       <Album album={weightOfThings} ownsAlbum={ownsAlbum} />
