@@ -2,6 +2,13 @@
 
 import { useRef, useState, type ChangeEvent, type FormEvent } from "react";
 import { submitJam } from "@/app/lets-jam/actions";
+import { usePlayer, type PlayerTrack } from "@/components/PlayerProvider";
+import {
+  beardMakethTheMan,
+  weightOfThings,
+  type Album,
+  type Track,
+} from "@/data/album";
 import {
   formatFileSize,
   isAllowedJamFile,
@@ -12,6 +19,44 @@ import {
   JAM_MAX_FILE_MB,
   JAM_SONGS,
 } from "@/data/jam";
+
+const JAM_ALBUMS = [weightOfThings, beardMakethTheMan];
+
+function toPlayerTrack(album: Album, track: Track): PlayerTrack | null {
+  if (!track.audioSrc) return null;
+  return {
+    ...track,
+    audioSrc: track.audioSrc,
+    coverSrc: album.coverSrc,
+    artist: "Merlinn",
+  };
+}
+
+function findPlayableTrack(title?: string): PlayerTrack | null {
+  for (const album of JAM_ALBUMS) {
+    for (const section of album.sections) {
+      const match = title
+        ? section.tracks.find((track) => track.title === title)
+        : section.tracks.find((track) => Boolean(track.audioSrc));
+      const playerTrack = match ? toPlayerTrack(album, match) : null;
+      if (playerTrack) return playerTrack;
+    }
+  }
+  return null;
+}
+
+function CoverPlayIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M20 12.5v23l18-11.5L20 12.5Z" />
+    </svg>
+  );
+}
 
 const fieldClassName =
   "w-full border border-white/30 bg-transparent px-3 py-2.5 text-sm text-white outline-none transition-colors placeholder:text-white/30 focus:border-white [color-scheme:dark]";
@@ -60,14 +105,22 @@ function uploadRecording(
 }
 
 export default function JamSubmissionForm() {
+  const { playTrack } = usePlayer();
   const [fileLabel, setFileLabel] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState<number | null>(null);
   const [success, setSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const songSelectRef = useRef<HTMLSelectElement>(null);
 
   const busy = uploading;
+
+  function handlePlaySong() {
+    const selected = songSelectRef.current?.value;
+    const track = findPlayableTrack(selected) ?? findPlayableTrack();
+    if (track) playTrack(track);
+  }
 
   function clearFileInput() {
     if (fileInputRef.current) {
@@ -198,31 +251,42 @@ export default function JamSubmissionForm() {
           </a>
         </div>
         
-        <div className="relative">
-          <select
-            id="song"
-            name="song"
-            required
-            defaultValue=""
-            className={`${fieldClassName} appearance-none pr-10`}
-          >
-            <option value="" disabled>
-              Choose a song
-            </option>
-            {JAM_SONGS.map((song) => (
-              <option key={song} value={song}>
-                {song}
+        <div className="flex items-center gap-2">
+          <div className="relative min-w-0 flex-1">
+            <select
+              ref={songSelectRef}
+              id="song"
+              name="song"
+              required
+              defaultValue=""
+              className={`${fieldClassName} appearance-none pr-10`}
+            >
+              <option value="" disabled>
+                Choose a song
               </option>
-            ))}
-          </select>
-          <svg
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-            className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-white/60"
+              {JAM_SONGS.map((song) => (
+                <option key={song} value={song}>
+                  {song}
+                </option>
+              ))}
+            </select>
+            <svg
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 text-white/60"
+            >
+              <path d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.58l3.3-3.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.42Z" />
+            </svg>
+          </div>
+          <button
+            type="button"
+            onClick={handlePlaySong}
+            className="flex h-[2.45rem] w-[2.45rem] shrink-0 cursor-pointer items-center justify-center rounded-full bg-black/40 text-white/90 transition-opacity hover:opacity-80 sm:h-[2.8rem] sm:w-[2.8rem]"
+            aria-label="Play song"
           >
-            <path d="M5.3 7.3a1 1 0 0 1 1.4 0L10 10.58l3.3-3.3a1 1 0 1 1 1.4 1.42l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 0-1.42Z" />
-          </svg>
+            <CoverPlayIcon className="h-[1.4rem] w-[1.4rem] sm:h-[1.575rem] sm:w-[1.575rem]" />
+          </button>
         </div>
       </div>
 
