@@ -70,7 +70,7 @@ export function buildJamNotificationEmail(payload: JamEmailPayload): {
             <tr>
               <td style="background:#3a3a3a;padding:32px 28px;">
                 <h1 style="margin:0 0 8px;font-size:22px;font-weight:normal;letter-spacing:0.04em;color:#ffffff;">
-                  Let&apos;s Jam — new submission
+                  Let's Jam — new submission
                 </h1>
                 <p style="margin:0 0 28px;font-size:14px;line-height:1.6;color:#b0b0b0;">
                   A recording arrived for review. Nothing is published until you say so.

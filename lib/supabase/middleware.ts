@@ -38,13 +38,13 @@ export async function updateSession(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const homeOnly = process.env.NEXT_PUBLIC_HOME_ONLY === "true";
 
-  // Soft-launch mode: only the home page and /lets-jam are public.
   // Block auth/commerce routes (and related APIs) so login, signup, and
   // checkout cannot be reached.
   if (
     homeOnly &&
     pathname !== "/" &&
     pathname !== "/lets-jam" &&
+    pathname !== "/the-music" &&
     !pathname.startsWith("/api/jam/") &&
     !pathname.startsWith("/api/webhooks/")
   ) {

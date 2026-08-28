@@ -40,19 +40,19 @@ export default function LetsJamPage() {
             <p>
               Years of yelling in loud work environments—and belting 
               out screamo in my car—have left my vocal chords in tatters. Ten minutes of trying to speak 
-              in a noisy pub and I&apos;m hoarse. It&apos;s a shame, really. I can hear the music perfectly in my 
-              mind, yet I lack the vocal instrument to play it (and I&apos;d really rather not use an AI 
+              in a noisy pub and I'm hoarse. It's a shame, really. I can hear the music perfectly in my 
+              mind, yet I lack the vocal instrument to play it (and I'd really rather not use an AI 
               singer—it cheapens the music I work so hard to write).
             </p>
             <p>
               The idea: my songs, your voice.
             </p>
             <p>
-              Upload a clip of yourself belting out part of a Merlinn song below. Good, bad; don&apos;t care. I&apos;ll turn it into a
+              Upload a clip of yourself belting out part of a Merlinn song below. Good, bad; don't care. I'll turn it into a
               split-screen with myself on the guitar and post it.
             </p>
             <p>
-              Let&apos;s just have fun and make some music together.
+              Let's just have fun and make some music together.
             </p>
           </div>
         </section>
