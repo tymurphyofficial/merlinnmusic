@@ -21,13 +21,13 @@ export const tracklist: TrackSection[] = [
     tracks: [
       {
         id: "p1-1",
-        title: "Ghosts On The Wind",
+        title: "The Winds Have Brought Us Safely",
         length: "3:52",
         visible: true,
       },
       {
         id: "p1-2",
-        title: "Out Of Love",
+        title: "That Solitary Bridgeman",
         length: "4:56",
         visible: true,
       },

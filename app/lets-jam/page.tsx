@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cinzel } from "next/font/google";
+import FeaturedLyrics from "@/components/FeaturedLyrics";
 import JamSubmissionForm from "@/components/JamSubmissionForm";
 
 const cinzel = Cinzel({
@@ -10,7 +11,7 @@ const cinzel = Cinzel({
 export const metadata: Metadata = {
   title: "Let's Jam | MERLINN",
   description:
-    "Sing a Merlinn song and send it in. Fan performances may be featured in YouTube videos — reviewed by hand, never auto-published.",
+    "Sing a Merlinn song and send it in.",
 };
 
 export const maxDuration = 60;
@@ -19,30 +20,17 @@ export default function LetsJamPage() {
   return (
     <main className="min-h-[70vh] bg-[var(--background)] pb-10">
       <div className="mx-auto w-full max-w-3xl px-4 pt-5 pb-6 sm:px-6 sm:pt-6 sm:pb-10">
+        <FeaturedLyrics />
+
         <section className="rounded-md bg-[#3a3a3a] px-5 py-4 shadow-[0_8px_30px_rgba(0,0,0,0.25)] sm:px-8 sm:py-6">
           <div className="mt-0 space-y-4 text-sm leading-relaxed text-[#b0b0b0] sm:text-[0.95rem]">
-            <div className="text-center">
-              <p className="mb-2">
-                I do not dream of becoming a famous musician. 
-              </p>
-              <p className="mb-2">
-                I do not envy those who tour and spend their nights in hotel rooms.
-              </p>
-              <p className="mb-2">
-                I am a life-long rhythm guitarist who loves to write and compose original music. 
-              </p>
-              <hr className="max-w-80 m-auto opacity-20 mt-4"/>
-            </div>
-            
             <p>
-              My greatest obstacle is my voice. 
+              I am a life-long rhythm guitarist who loves to write and compose original music. 
             </p>
             <p>
-              Years of yelling in loud work environments—and belting 
-              out screamo in my car—have left my vocal chords in tatters. Ten minutes of trying to speak 
-              in a noisy pub and I&apos;m hoarse. It&apos;s a shame, really. I can hear the music perfectly in my 
-              mind, yet I lack the vocal instrument to play it (and I&apos;d really rather not use an AI 
-              singer—it cheapens the music I work so hard to write).
+              My greatest obstacle is my voice. Years of yelling in loud work environments has left my vocal chords in tatters. It&apos;s a shame, really. 
+              I can hear the music perfectly in my mind, yet I lack the vocal instrument to play it. While AI comes close,
+              I feel that it cheapens the music I work so hard to write.
             </p>
             <p>
               The idea: my songs, your voice.

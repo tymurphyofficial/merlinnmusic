@@ -17,7 +17,7 @@ const steps = [
     title: "Step 1 - Foundation",
     imageSrc: "/the-music/step 1.png",
     description:
-      "Before anything is written, you must decide what you are going to write about. Is the message and emotional tone you imagine for the song best served by fast power-metal with sweeping virtuoso guitar solos, or melodic and passionate acoustics? I like to write about themes inspired by my favourite fantasy books. ",
+      "Before anything is written, you must decide what you are going to write about. Is the message and emotional tone you imagine for the song best served by fast power-metal with sweeping virtuoso guitar solos, or melodic earthly acoustics? I like to write about themes inspired by my favourite fantasy books. ",
   },
   {
     title: "Step 2 - Work The Chords",
@@ -50,7 +50,7 @@ const steps = [
       "I record the guitar parts that I have written on my computer using GarageBand. There are usually two parts, and so I record both and layer them. I then record the vocals, singing them myself. Even though my voice is not great, I can still carry a note and handle the melodies well enough. I layer this over the guitar parts and export the rough recording.",
   },
   {
-    title: "Step 7 - The Poor Artist's Dilemma",
+    title: "Step 7 - A Poor Artist's Dilemma",
     imageSrc: "/the-music/step 7.png",
     description:
       "Everything up until this point is how to create the soul of a song. The chords, the rhythms, the melodies, the lyrics—they have all come from me. If I had the resources to hire musicians to track the other parts, I would. But I can't afford to drop thousands of dollars on every song. That's crazy. So, I turn to the machine (yes, I mean AI.)",
