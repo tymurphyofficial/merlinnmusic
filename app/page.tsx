@@ -27,13 +27,13 @@ export default async function Home() {
         <div className="flex gap-2 mb-2">
           <Link
             href="/the-music"
-            className={`${cinzel.className} flex w-full rounded-md bg-[#151515] py-3 sm:py-5 justify-center items-center text-center text-md font-medium tracking-[0.16em] text-white uppercase transition-opacity hover:opacity-80 sm:py-6 sm:text-lg`}
+            className={`${cinzel.className} flex w-full rounded-md bg-[#151515] py-3 sm:py-5 justify-center items-center text-center text-md font-medium tracking-[0.16em] text-white uppercase transition-opacity hover:opacity-80 sm:py-6 sm:text-xl`}
           >
             How I Make Music
           </Link>
           <Link
             href="/lets-jam"
-            className={`${cinzel.className} flex w-full rounded-md bg-[#151515] py-3 sm:py-5 justify-center items-center text-center text-xl font-medium tracking-[0.16em] text-white uppercase transition-opacity hover:opacity-80 sm:py-6 sm:text-2xl`}
+            className={`${cinzel.className} flex w-full rounded-md bg-[#151515] py-3 sm:py-5 justify-center items-center text-center text-xl font-medium tracking-[0.16em] text-white uppercase transition-opacity hover:opacity-80 sm:py-6 sm:text-xl`}
           >
             Let's Jam
           </Link>
