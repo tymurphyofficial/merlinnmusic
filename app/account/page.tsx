@@ -110,7 +110,7 @@ export default async function AccountPage() {
           ) : (
             <div className="mt-4 rounded-md bg-[#3a3a3a] px-6 py-8 shadow-[0_8px_30px_rgba(0,0,0,0.25)] sm:px-8">
               <p className="text-sm text-[#a8a8a8]">
-                You haven't claimed any relics yet.
+                You haven&apos;t claimed any relics yet.
               </p>
             </div>
           )}

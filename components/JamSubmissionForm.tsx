@@ -226,9 +226,9 @@ export default function JamSubmissionForm() {
           Your song is in the keep.
         </h3>
         <p className="mt-4 text-sm leading-relaxed text-[#b0b0b0] sm:text-[0.95rem]">
-          It arrived. I'll review it by hand — nothing auto-publishes into
-          the void. If it belongs in a video, I'll be in touch. If it
-          doesn't make this round, thank you for singing anyway. The world
+          It arrived. I&apos;ll review it by hand — nothing auto-publishes into
+          the void. If it belongs in a video, I&apos;ll be in touch. If it
+          doesn&apos;t make this round, thank you for singing anyway. The world
           is heavier without it.
         </p>
       </div>
@@ -401,7 +401,7 @@ export default function JamSubmissionForm() {
           By submitting, you grant Merlinn a non-exclusive, worldwide license to use this video and your name/stage name in videos, 
           social posts, and promos (with credit given to you). You confirm this is your original vocal of a Merlinn song and you have the right to send it.
           Every submission is reviewed by an actual human and may never be used. This is just for fun community videos — not a contract, 
-          not a record deal, and not an audition. Your voice will not appear on official releases (though who knows, maybe if you're that good we could figure something out).
+          not a record deal, and not an audition. Your voice will not appear on official releases (though who knows, maybe if you&apos;re that good we could figure something out).
         </span>
       </label>
 

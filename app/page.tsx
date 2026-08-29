@@ -35,7 +35,7 @@ export default async function Home() {
             href="/lets-jam"
             className={`${cinzel.className} flex w-full rounded-md bg-[#151515] py-3 sm:py-5 justify-center items-center text-center text-xl font-medium tracking-[0.16em] text-white uppercase transition-opacity hover:opacity-80 sm:py-6 sm:text-xl`}
           >
-            Let's Jam
+            Let&apos;s Jam
           </Link>
         </div>
       </div>
