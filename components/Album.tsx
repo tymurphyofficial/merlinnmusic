@@ -127,7 +127,9 @@ export default function Album({ album, ownsAlbum = false }: AlbumProps) {
           </div>
 
           <div className="flex min-w-0 flex-1 flex-col pt-0 sm:pt-1">
-            <h1 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            <h1
+              className={`${cinzel.className} text-2xl font-semibold tracking-tight text-white sm:text-3xl`}
+            >
               {album.title}
             </h1>
             <p className="mt-2 text-sm leading-relaxed text-[#b0b0b0]">
