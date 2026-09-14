@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import PlayerBar from "@/components/PlayerBar";
 import { PlayerProvider } from "@/components/PlayerProvider";
+import { isPlaybackEnabled } from "@/lib/features";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -56,7 +57,7 @@ export default function RootLayout({
           <PlayerProvider>
             {children}
             <Footer />
-            <PlayerBar />
+            {isPlaybackEnabled() ? <PlayerBar /> : null}
           </PlayerProvider>
         </CartProvider>
       </body>

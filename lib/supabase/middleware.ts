@@ -43,9 +43,6 @@ export async function updateSession(request: NextRequest) {
   if (
     homeOnly &&
     pathname !== "/" &&
-    pathname !== "/lets-jam" &&
-    pathname !== "/the-music" &&
-    !pathname.startsWith("/api/jam/") &&
     !pathname.startsWith("/api/webhooks/")
   ) {
     if (pathname.startsWith("/api/")) {

@@ -8,9 +8,8 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     /*
-     * Match all request paths except static assets, images, and the Let's Jam
-     * upload API (large files must not be cloned/truncated by middleware).
+     * Match all request paths except static assets and images.
      */
-    "/((?!_next/static|_next/image|favicon|api/jam/|.*\\.(?:svg|png|jpg|jpeg|gif|webp|wav|mp3|ico|webmanifest)$).*)",
+    "/((?!_next/static|_next/image|favicon|.*\\.(?:svg|png|jpg|jpeg|gif|webp|wav|mp3|ico|webmanifest)$).*)",
   ],
 };

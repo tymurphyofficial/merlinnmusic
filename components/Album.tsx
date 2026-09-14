@@ -6,15 +6,17 @@ import { Cinzel } from "next/font/google";
 import { useCart } from "@/components/CartProvider";
 import { usePlayer, type PlayerTrack } from "@/components/PlayerProvider";
 import type { Album as AlbumData } from "@/data/album";
-import { isHomeOnly } from "@/lib/features";
+import { isHomeOnly, isPlaybackEnabled } from "@/lib/features";
 
 const cinzel = Cinzel({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
 });
 
-const trackGrid =
+const playableTrackGrid =
   "grid grid-cols-[1.25rem_2rem_1fr_4rem] items-center gap-x-2 px-1 sm:grid-cols-[1.5rem_2.25rem_1fr_4.5rem]";
+const tracklistGrid =
+  "grid grid-cols-[2rem_1fr_4rem] items-center gap-x-2 px-1 sm:grid-cols-[2.25rem_1fr_4.5rem]";
 
 function PlayIcon({ className }: { className?: string }) {
   return (
@@ -66,6 +68,34 @@ function WaveformIcon({ className }: { className?: string }) {
   );
 }
 
+function parseLengthToSeconds(length: string): number {
+  const parts = length.split(":").map(Number);
+  if (parts.length < 2 || parts.some((n) => !Number.isFinite(n))) return 0;
+  return parts.reduce((total, part) => total * 60 + part, 0);
+}
+
+function formatAlbumRuntime(totalSeconds: number): string {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  const pad = (n: number) => n.toString().padStart(2, "0");
+
+  if (hours > 0) {
+    return `${hours}:${pad(minutes)}:${pad(seconds)}`;
+  }
+
+  return `${minutes}:${pad(seconds)}`;
+}
+
+function getAlbumRuntime(album: AlbumData): string {
+  const totalSeconds = album.sections
+    .flatMap((section) => section.tracks)
+    .filter((track) => track.visible)
+    .reduce((sum, track) => sum + parseLengthToSeconds(track.length), 0);
+
+  return formatAlbumRuntime(totalSeconds);
+}
+
 type AlbumProps = {
   album: AlbumData;
   ownsAlbum?: boolean;
@@ -73,6 +103,9 @@ type AlbumProps = {
 
 export default function Album({ album, ownsAlbum = false }: AlbumProps) {
   const homeOnly = isHomeOnly();
+  const playbackEnabled = isPlaybackEnabled();
+  const trackGrid = playbackEnabled ? playableTrackGrid : tracklistGrid;
+  const albumRuntime = getAlbumRuntime(album);
   const { currentTrack, isPlaying, playTrack } = usePlayer();
   const { addItem, hasItem, isReady } = useCart();
   const inCart = isReady && hasItem(album.id);
@@ -136,14 +169,16 @@ export default function Album({ album, ownsAlbum = false }: AlbumProps) {
               {album.subtitle}
             </p>
 
-            <button
-              type="button"
-              onClick={handlePlayAlbum}
-              className="mt-4 flex h-[2.45rem] w-[2.45rem] cursor-pointer items-center justify-center rounded-full bg-black/40 text-white/90 transition-opacity hover:opacity-80 sm:h-[2.8rem] sm:w-[2.8rem]"
-              aria-label="Play album"
-            >
-              <CoverPlayIcon className="h-[1.4rem] w-[1.4rem] sm:h-[1.575rem] sm:w-[1.575rem]" />
-            </button>
+            {playbackEnabled ? (
+              <button
+                type="button"
+                onClick={handlePlayAlbum}
+                className="mt-4 flex h-[2.45rem] w-[2.45rem] cursor-pointer items-center justify-center rounded-full bg-black/40 text-white/90 transition-opacity hover:opacity-80 sm:h-[2.8rem] sm:w-[2.8rem]"
+                aria-label="Play album"
+              >
+                <CoverPlayIcon className="h-[1.4rem] w-[1.4rem] sm:h-[1.575rem] sm:w-[1.575rem]" />
+              </button>
+            ) : null}
 
             {!homeOnly ? (
               <div className="mt-5 flex items-center gap-4">
@@ -181,7 +216,7 @@ export default function Album({ album, ownsAlbum = false }: AlbumProps) {
         {/* Tracklist */}
         <div className="mt-8 sm:mt-10">
           <div className={`${trackGrid} pb-2 text-sm text-[#a8a8a8]`}>
-            <span />
+            {playbackEnabled ? <span /> : null}
             <span>#</span>
             <span>Title</span>
             <span className="text-right">Length</span>
@@ -205,7 +240,8 @@ export default function Album({ album, ownsAlbum = false }: AlbumProps) {
                     {section.tracks.map((track) => {
                       trackNumber += 1;
                       const displayNumber = trackNumber;
-                      const isPlayable = Boolean(track.audioSrc);
+                      const isPlayable =
+                        playbackEnabled && Boolean(track.audioSrc);
                       const isCurrent = currentTrack?.id === track.id;
                       const showWaveform = isCurrent && isPlaying;
 
@@ -217,15 +253,17 @@ export default function Album({ album, ownsAlbum = false }: AlbumProps) {
 
                       const content = (
                         <>
-                          <span className="flex h-5 w-5 items-center justify-center">
-                            {isPlayable ? (
-                              showWaveform ? (
-                                <WaveformIcon className="h-4 w-4 text-[var(--accent)]" />
-                              ) : (
-                                <PlayIcon className="h-4 w-4 text-white" />
-                              )
-                            ) : null}
-                          </span>
+                          {playbackEnabled ? (
+                            <span className="flex h-5 w-5 items-center justify-center">
+                              {isPlayable ? (
+                                showWaveform ? (
+                                  <WaveformIcon className="h-4 w-4 text-[var(--accent)]" />
+                                ) : (
+                                  <PlayIcon className="h-4 w-4 text-white" />
+                                )
+                              ) : null}
+                            </span>
+                          ) : null}
 
                           <span className="text-sm tabular-nums text-[#c8c8c8]">
                             {displayNumber}
@@ -282,6 +320,20 @@ export default function Album({ album, ownsAlbum = false }: AlbumProps) {
                 </section>
               ));
             })()}
+          </div>
+
+          <div
+            className={`${trackGrid} mt-1 w-full border-t border-white/20 py-2`}
+          >
+            {playbackEnabled ? <span /> : null}
+            <span />
+            <span />
+            <span
+              className="text-right text-sm tabular-nums  text-[#c8c8c8]/70"
+              aria-label={`Album runtime ${albumRuntime}`}
+            >
+              {albumRuntime}
+            </span>
           </div>
         </div>
       </div>
