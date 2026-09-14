@@ -15,8 +15,11 @@ export default async function Home() {
     : false;
 
   return (
-    <main className="min-h-[70vh] bg-[var(--background)] pb-10">
-      <Album album={weightOfThings} ownsAlbum={ownsAlbum} />
+    <main className="h-full bg-[var(--background)] pb-10">
+      <div className="flex justify-center min-h-screen">
+        <h2 className="relative top-40">COMING SOON</h2>
+      </div>
+      {/* <Album album={weightOfThings} ownsAlbum={ownsAlbum} /> */}
       {/* <Album album={beardMakethTheMan} /> */}
     </main>
   );
